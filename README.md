@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/piligr1m/stack.svg?token=6x9RzivecP4pWPUVsqRH&branch=master)](https://travis-ci.com/piligr1m/stack)
 # Лабораторная работа №5
 
 ## Задание 1
