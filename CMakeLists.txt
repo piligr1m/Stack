@@ -13,6 +13,6 @@ include_directories(include)
 
 enable_testing()
 
-add_executable(test_stack source/stack.cpp)
+add_executable(test_stack sources/stack.cpp)
 
 add_test(NAME ${PROJECT_NAME} COMMAND test_stack)
