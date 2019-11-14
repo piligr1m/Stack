@@ -22,18 +22,18 @@ class stack
     };
     Node *top;
 public:
-    stack();
+    stack(); // Default constructor.
     stack(const stack&) = delete;
     stack& operator=(const stack&) = delete;
     template <class... Args>
     void push_emplace(Args&&... value);
     template<class T1,class... Args>
-    void push_emplace1(T1&& value, Args&&... value1);
-    void push(T&& value);
+    void push_emplace1(T1&& value, Args&&... value1); //constructs element in-place at the top
+    void push(T&& value); // inserts element at the top
     void push(const T& value);
     const T& head() const;
-    T pop();
-    ~stack();
+    T pop(); // removes the top element
+    ~stack(); //destructor
 };
 template <class T>
 stack<T>::stack()
@@ -42,7 +42,7 @@ stack<T>::stack()
 }
 template <class T>
 template <class... Args>
-void stack<T>::push_emplace(Args&&... value) //Конструирует элементы "на месте" и вставляет их начиная с заданной позиции pos
+void stack<T>::push_emplace(Args&&... value)
 {
     for (auto p : std::initializer_list<T>{value...})
     {
@@ -53,7 +53,7 @@ void stack<T>::push_emplace(Args&&... value) //Конструирует элем
     }
 }
 template <class T>
-void stack<T>::push(T&& value) //Вставляет элемент на верх.
+void stack<T>::push(T&& value)
 {
     Node *node = new Node;
     node->value = value;
@@ -61,7 +61,7 @@ void stack<T>::push(T&& value) //Вставляет элемент на верх
     top = node;
 }
 template <typename T>
-void stack<T>::push(const T& value) //Вставляет элемент на верх.
+void stack<T>::push(const T& value)
 {
     Node *node = new Node;
     node->value = value;
@@ -74,7 +74,7 @@ const T& stack<T>::head() const
     return top->value;
 }
 template <class T>
-T stack<T>::pop() //Удаляет верхний элемент.
+T stack<T>::pop() 
 {
     T value = top->value;
     Node *tmp = top;
@@ -94,4 +94,3 @@ stack<T>::~stack()
     }
 }
 #endif /* stack_hpp */
-
