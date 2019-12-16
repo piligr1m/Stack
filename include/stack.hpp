@@ -56,7 +56,7 @@ template <class T>
 void stack<T>::push(T&& value)
 {
     Node *node = new Node;
-    node->value = value;
+    node->value = std::move(value);
     node->next = top;
     top = node;
 }
