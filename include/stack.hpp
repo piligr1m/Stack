@@ -6,8 +6,8 @@
 //  Copyright © 2019 Stanislav Martynov. All rights reserved.
 //
 
-#ifndef stack_hpp
-#define stack_hpp
+#ifndef Stack_hpp
+#define Stack_hpp
 
 #include <stdio.h>
 #include <initializer_list>
@@ -93,4 +93,4 @@ stack<T>::~stack()
         delete tmp;
     }
 }
-#endif /* stack_hpp */
+#endif /* Stack_hpp */
