@@ -26,7 +26,7 @@ int main(int argc, const char * argv[]) {
     }
 
     // Moving st1 to st3
-    std::cout << "\nSTACK1<INT> ST3 = ST1, ST3:\n";
+    std::cout << "\nSTACK1<INT> ST3 = ST1, ST2:\n";
     for (int i = 0; i < 10; i++) {
         st1.push(i);
     }
