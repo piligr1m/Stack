@@ -1,3 +1,5 @@
+#ifndef Zadanie1_h
+#define Zadanie1_h
 #include <iostream>
 #include <memory>
 
