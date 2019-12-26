@@ -7,9 +7,9 @@ template <typename T>
 class Stack
 {
 private:
-    static const unsigned int st_capacity = 32; // reserved memory
+    static const unsigned int st_capacity = 32; 
     unsigned int capacity;
-    unsigned int size; // count of elements
+    unsigned int size; 
     std::unique_ptr<T> st_ptr;
 
 public:
