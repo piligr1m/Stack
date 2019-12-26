@@ -1,10 +1,10 @@
-#ifndef Zadanie2_h
-#define Zadanie2_h
+#ifndef Zadanie_h
+#define Zadanie_h
 #include <iostream>
 #include <memory>
 
 template <typename T>
-class Stack2
+class Stack
 {
 private:
     static const unsigned int st_capacity = 32; // reserved memory
@@ -13,13 +13,13 @@ private:
     std::unique_ptr<T> st_ptr;
 
 public:
-    Stack2();
-    Stack2(const Stack2<T>& stack) = delete;
-    Stack2(Stack2<T>&& stack);
-    ~Stack2() = default;
+    Stack();
+    Stack(const Stack<T>& stack) = delete;
+    Stack(Stack<T>&& stack);
+    ~Stack() = default;
 
-    Stack2<T>& operator=(const Stack2<T>& stack) = delete;
-    Stack2<T>& operator=(Stack2<T>&& stack);
+    Stack<T>& operator=(const Stack<T>& stack) = delete;
+    Stack<T>& operator=(Stack<T>&& stack);
 
     template <typename ... Args>
     void push_emplace(Args&&... value);
@@ -34,21 +34,21 @@ public:
 };
 
 template <typename T>
-Stack2<T>::Stack2() {
+Stack<T>::Stack() {
     this->capacity = this->st_capacity;
     this->size = 0;
     this->st_ptr.reset(new T [this->st_capacity]);
 }
 
 template <typename T>
-Stack2<T>::Stack2(Stack2<T>&& stack) {
+Stack<T>::Stack(Stack<T>&& stack) {
     std::swap(this->capacity, stack.capacity);
     std::swap(this->size, stack.size);
     std::swap(this->st_ptr, stack.st_ptr);
 }
 
 template <typename T>
-Stack2<T>& Stack2<T>::operator=(Stack2<T>&& stack) {
+Stack<T>& Stack<T>::operator=(Stack<T>&& stack) {
     if(std::move(stack) != this) {
         std::swap(this->capacity, stack.capacity);
         std::swap(this->size, stack.size);
@@ -59,7 +59,7 @@ Stack2<T>& Stack2<T>::operator=(Stack2<T>&& stack) {
 }
 
 template <typename T>
-void Stack2<T>::push(const T& value) {
+void Stack<T>::push(const T& value) {
     this->size++;
     if (this->size > this->capacity && !this->isFull()) {
         this->capacity *= 2;
@@ -82,7 +82,7 @@ void Stack2<T>::push(const T& value) {
 }
 
 template <typename T>
-void Stack2<T>::push(T&& value) {
+void Stack<T>::push(T&& value) {
     this->size++;
     if (this->size > this->capacity && !this->isFull()) {
         this->capacity *= 2;
@@ -105,7 +105,7 @@ void Stack2<T>::push(T&& value) {
 
 template <typename T>
 template <typename ... Args>
-void Stack2<T>::push_emplace(Args&&... value) {
+void Stack<T>::push_emplace(Args&&... value) {
     T args [] = {value...};
 
     for(const auto& e: args) {
@@ -114,7 +114,7 @@ void Stack2<T>::push_emplace(Args&&... value) {
 }
 
 template <typename T>
-T Stack2<T>::pop() {
+T Stack<T>::pop() {
     if(!this->isEmpty()) {
         this->size--;
     }
@@ -125,21 +125,21 @@ T Stack2<T>::pop() {
 }
 
 template <typename T>
-bool Stack2<T>::isEmpty() const {
+bool Stack<T>::isEmpty() const {
      return this->size == 0;
 }
 
 template <typename T>
-bool Stack2<T>::isFull() const {
+bool Stack<T>::isFull() const {
      return this->size > 65536;
 }
 
 template <typename T>
-const T& Stack2<T>::head() const {
+const T& Stack<T>::head() const {
     if (!this->isEmpty())
         return this->st_ptr.get()[this->size - 1];
     else
         throw std::logic_error("|Stack2 IS EMPTY|");
 }
 
-#endif /* Zadanie2_h */
+#endif /* Zadanie_h */
