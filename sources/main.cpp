@@ -2,8 +2,7 @@
 #include "Zadanie.h"
 
 int main(int argc, const char * argv[]) {
-    // Stack 2
-    std::cout << "\nSTACK2<INT> ST2:\n";
+    std::cout << "\nSTACK<INT> ST:\n";
     Stack<int> st2;
     st2.push(1);
     st2.push(2);
