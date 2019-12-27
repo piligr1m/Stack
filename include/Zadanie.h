@@ -74,7 +74,7 @@ void Stack<T>::push(const T& value) {
         this->st_ptr.swap(new_st);
     }
     else if (this->isFull()) {
-        throw std::logic_error("|Stack2 OVERFLOW|");
+        throw std::logic_error("Stack is full");
         this->size--;
     }
     else
@@ -97,7 +97,7 @@ void Stack<T>::push(T&& value) {
         this->st_ptr.swap(new_st);
     }
     else if (this->isFull()) {
-        throw std::logic_error("|Stack2 OVERFLOW|");
+        throw std::logic_error("Stack is full");
         this->size--;
     }
     else this->st_ptr.get()[this->size - 1] = std::move(value);
@@ -119,7 +119,7 @@ T Stack<T>::pop() {
         this->size--;
     }
     else
-        throw std::logic_error("|Stack2 IS EMPTY|");
+        throw std::logic_error("Stack is empty");
 
 
 }
