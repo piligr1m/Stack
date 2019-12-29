@@ -1,5 +1,4 @@
-#ifndef Zadanie_h
-#define Zadanie_h
+#pragma once
 #include <iostream>
 #include <memory>
 
@@ -142,4 +141,4 @@ const T& Stack<T>::head() const {
         throw std::logic_error("Stack is empty");
 }
 
-#endif /* Zadanie_h */
+
