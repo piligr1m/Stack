@@ -139,7 +139,7 @@ const T& Stack<T>::head() const {
     if (!this->isEmpty())
         return this->st_ptr.get()[this->size - 1];
     else
-        throw std::logic_error("|Stack2 IS EMPTY|");
+        throw std::logic_error("Stack IS EMPTY");
 }
 
 #endif /* Zadanie_h */
