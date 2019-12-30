@@ -1,8 +1,8 @@
+#include "stack.h"
 #include <iostream>
-#include "Zadanie.h"
 
 int main(int argc, const char * argv[]) {
-    std::cout << "\nSTACK<INT> ST:\n";
+    std::cout << "Stack:" << std::endl;
     Stack<int> st;
     st.push(1);
     st.push(2);
@@ -11,5 +11,7 @@ int main(int argc, const char * argv[]) {
         std::cout << st.head() << std::endl;
         st.pop();
     }
+
+
 }
 

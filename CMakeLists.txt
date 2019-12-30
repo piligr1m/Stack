@@ -1,14 +1,18 @@
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 2.8)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project(CH CXX)
 
-project(stack)
+if (MSVC)
+    add_definitions(/W4)
+else()
+    add_definitions(-Wall)
+    add_definitions(-std=c++11)
+endif()
 
-add_library(stack INTERFACE)
+include_directories(include)
 
-add_executable(stack sources/main.cpp)
+enable_testing()
 
-target_include_directories(stack INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+add_executable(test_stack sources/main.cpp)
 
-target_link_libraries(stack)
+add_test(NAME ${PROJECT_NAME} COMMAND test_stack)
