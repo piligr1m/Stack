@@ -6,7 +6,7 @@ template <typename T>
 class Stack
 {
 private:
-    static const unsigned int st_capacity = 32; 
+    static const unsigned int st_capacity = 16; 
     unsigned int capacity;
     unsigned int size; 
     std::unique_ptr<T> st_ptr;
@@ -61,7 +61,7 @@ template <typename T>
 void Stack<T>::push(T&& value) {
     this->size++;
     if (this->size > this->capacity && !this->isFull()) {
-        this->capacity *= 2;
+        this->capacity *= 3;
 
         std::unique_ptr<T> new_st(new T [this->capacity]);
 
