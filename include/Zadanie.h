@@ -14,16 +14,13 @@ private:
 public:
     Stack();
     ~Stack() = default;
-
     template <typename ... Args>
     void push_emplace(Args&&... value);
     void push(const T& value);
     void push(T&& value);
     T pop();
-
     bool isEmpty() const;
     bool isFull() const;
-
     const T& head() const;
 };
 
