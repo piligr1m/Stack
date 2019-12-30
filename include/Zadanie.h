@@ -13,12 +13,7 @@ private:
 
 public:
     Stack();
-    Stack(const Stack<T>& stack) = delete;
-    Stack(Stack<T>&& stack);
     ~Stack() = default;
-
-    Stack<T>& operator=(const Stack<T>& stack) = delete;
-    Stack<T>& operator=(Stack<T>&& stack);
 
     template <typename ... Args>
     void push_emplace(Args&&... value);
@@ -37,24 +32,6 @@ Stack<T>::Stack() {
     this->capacity = this->st_capacity;
     this->size = 0;
     this->st_ptr.reset(new T [this->st_capacity]);
-}
-
-template <typename T>
-Stack<T>::Stack(Stack<T>&& stack) {
-    std::swap(this->capacity, stack.capacity);
-    std::swap(this->size, stack.size);
-    std::swap(this->st_ptr, stack.st_ptr);
-}
-
-template <typename T>
-Stack<T>& Stack<T>::operator=(Stack<T>&& stack) {
-    if(std::move(stack) != this) {
-        std::swap(this->capacity, stack.capacity);
-        std::swap(this->size, stack.size);
-        std::swap(this->st_ptr, stack.st_ptr);
-    }
-
-    return *this;
 }
 
 template <typename T>
