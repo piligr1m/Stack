@@ -81,8 +81,8 @@ template <typename ... Args>
 void Stack<T>::push_emplace(Args&&... value) {
     T args [] = {value...};
 
-    for(const auto& e: args) {
-        this->push(e);
+    for(const auto& element: args) {
+        this->push(element);
     }
 }
 
