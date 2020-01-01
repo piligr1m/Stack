@@ -11,7 +11,5 @@ int main(int argc, const char * argv[]) {
         std::cout << st.head() << std::endl;
         st.pop();
     }
-
-
 }
 
