@@ -35,7 +35,7 @@ template <typename T>
 void Stack<T>::push(const T& value) {
     this->size++;
     if (this->size > this->capacity && !this->isFull()) {
-        this->capacity *= 2;
+        this->capacity *= 3;
 
         std::unique_ptr<T> new_st(new T [this->capacity]);
 
