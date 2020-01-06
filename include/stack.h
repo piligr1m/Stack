@@ -34,57 +34,41 @@ Stack<T>::Stack() {
 
 template <typename T>
 void Stack<T>::push(const T& value) {
-    this->size++;
-    if (this->size > this->capacity && !this->isFull()) {
-        this->capacity *= 3;
-
-        std::unique_ptr<T> new_st(new T [this->capacity]);
-
-        for(int i = 0; i < this->size - 1; i++) {
-            new_st.get()[i] = this->st_ptr.get()[i];
-        }
-        new_st.get()[this->size - 1] = value;
-
-        this->st_ptr.swap(new_st);
-    }
-    else if (this->isFull()) {
+    if (this->isFull()){
         throw std::logic_error("Stack is full");
-        this->size--;
     }
-    else
-        this->st_ptr.get()[this->size - 1] = value;
+    this->size++;
+
+    std::unique_ptr<T> new_st(new T [this->capacity]);
+
+    for(int i = 0; i < this->size - 1; i++) {
+        new_st.get()[i] = this->st_ptr.get()[i];
+    }
+    new_st.get()[this->size - 1] = value;
+
+    this->st_ptr.swap(new_st);
 }
 
 template <typename T>
 void Stack<T>::push(T&& value) {
-    this->size++;
-    if (this->size > this->capacity && !this->isFull()) {
-        this->capacity *= 3;
-
-        std::unique_ptr<T> new_st(new T [this->capacity]);
-
-        for(int i = 0; i < this->size - 1; i++) {
-            new_st.get()[i] = this->st_ptr.get()[i];
-        }
-        new_st.get()[this->size - 1] = std::move(value);
-
-        this->st_ptr.swap(new_st);
-    }
-    else if (this->isFull()) {
+    if (this->isFull()) {
         throw std::logic_error("Stack is full");
-        this->size--;
     }
-    else this->st_ptr.get()[this->size - 1] = std::move(value);
+    std::unique_ptr<T> new_st(new T [this->capacity]);
+
+    for(int i = 0; i < this->size - 1; i++) {
+        new_st.get()[i] = this->st_ptr.get()[i];
+    }
+    new_st.get()[this->size - 1] = std::move(value);
+
+    this->st_ptr.swap(new_st);
+    this->size++;
 }
 
 template <typename T>
 template <typename ... Args>
 void Stack<T>::push_emplace(Args&&... value) {
-    T args [] = {value...};
-
-    for(const auto& element: args) {
-        this->push(element);
-    }
+    this->push(T{value...});
 }
 
 template <typename T>
