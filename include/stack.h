@@ -54,6 +54,7 @@ void Stack<T>::push(T&& value) {
     if (this->isFull()) {
         throw std::logic_error("Stack is full");
     }
+    this->size++;
     std::unique_ptr<T> new_st(new T [this->capacity]);
 
     for(int i = 0; i < this->size - 1; i++) {
@@ -62,7 +63,6 @@ void Stack<T>::push(T&& value) {
     new_st.get()[this->size - 1] = std::move(value);
 
     this->st_ptr.swap(new_st);
-    this->size++;
 }
 
 template <typename T>
