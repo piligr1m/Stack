@@ -22,7 +22,6 @@ project(stack)
 #find_package(Boost CONFIG REQUIRED shared_ptr)
 
 add_library(stack1 INTERFACE)
-add_library(stack2 INTERFACE)
 
 add_executable(stack sources/main.cpp)
 
