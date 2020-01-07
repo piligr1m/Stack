@@ -10,7 +10,7 @@ private:
     static const unsigned int st_capacity = 16;
     unsigned int capacity;
     unsigned char size;
-    std::unique_ptr<T> st_ptr;
+    std::unique_ptr<T[]> st_ptr;
 
 public:
     Stack();
@@ -22,7 +22,7 @@ public:
     T pop();
     bool isEmpty() const;
     bool isFull() const;
-    const T& head() const; 
+    const T& head() const;
 };
 
 template <typename T>
@@ -55,7 +55,7 @@ void Stack<T>::push(T&& value) {
         throw std::logic_error("Stack is full");
     }
     this->size++;
-    std::unique_ptr<T> new_st(new T [this->capacity]);
+    std::unique_ptr<T[]> new_st(new T [this->capacity]);
 
     for(int i = 0; i < this->size - 1; i++) {
         new_st.get()[i] = this->st_ptr.get()[i];
@@ -63,6 +63,7 @@ void Stack<T>::push(T&& value) {
     new_st.get()[this->size - 1] = std::move(value);
 
     this->st_ptr.swap(new_st);
+    
 }
 
 template <typename T>
@@ -73,11 +74,10 @@ void Stack<T>::push_emplace(Args&&... value) {
 
 template <typename T>
 T Stack<T>::pop() {
-    if(!this->isEmpty()) {
-        this->size--;
-    }
-    else
+    if(this->isEmpty()) {
         throw std::logic_error("Stack is empty");
+    }
+   return this->size--;
 }
 
 template <typename T>
@@ -91,7 +91,7 @@ bool Stack<T>::isFull() const {
 }
 
 template <typename T>
- const T& Stack<T>::head() const{
+ const T& Stack<T>::head() const {
     if (!this->isEmpty())
     return this->st_ptr.get()[this->size - 1];
     else
