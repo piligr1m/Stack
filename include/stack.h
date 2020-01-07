@@ -9,7 +9,7 @@ class Stack
 private:
     static const unsigned int st_capacity = 16;
     unsigned int capacity;
-    unsigned int size;
+    unsigned char size;
     std::unique_ptr<T> st_ptr;
 
 public:
@@ -22,7 +22,7 @@ public:
     T pop();
     bool isEmpty() const;
     bool isFull() const;
-    const T& head() const;
+    const T& head() const; 
 };
 
 template <typename T>
@@ -78,8 +78,6 @@ T Stack<T>::pop() {
     }
     else
         throw std::logic_error("Stack is empty");
-    return 0;
-
 }
 
 template <typename T>
@@ -93,10 +91,9 @@ bool Stack<T>::isFull() const {
 }
 
 template <typename T>
-const T& Stack<T>::head() const {
+ const T& Stack<T>::head() const{
     if (!this->isEmpty())
-        return this->st_ptr.get()[this->size - 1];
+    return this->st_ptr.get()[this->size - 1];
     else
         throw std::logic_error("Stack is empty");
 }
-
